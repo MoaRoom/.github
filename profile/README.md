@@ -54,7 +54,8 @@
 
 ### 인프라 개발
 
-![image](https://github.com/MoaRoom/.github/assets/68985625/25a1aaa2-5105-4f83-8627-ca485bcd26ff)
+![졸프_SW아키텍처 drawio](https://github.com/MoaRoom/.github/assets/68985625/f99df8d4-0c1c-46ac-95fd-1358bb400e53)
+
 
 - Infrastructure provisioning pipeline
     
