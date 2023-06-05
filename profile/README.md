@@ -2,6 +2,9 @@
 
 **프로그래밍 과제 제출 환경 통합 및 검사 자동화 플랫폼: MoaRoom(모아룸)**
 
+# 로고
+<img src="https://github.com/MoaRoom/.github/assets/68985625/283e32c3-c089-4a15-9d3a-39c7133f99f8" width=30%/>&nbsp;&nbsp;<img src="https://github.com/MoaRoom/.github/assets/68985625/1ddba96d-a9d2-49b6-b066-79ff941855e3" width=30%/>
+
 # 협력기관(국가)
 
 ㈜그렙([programmers.co.kr](http://programmers.co.kr/))(대한민국)
