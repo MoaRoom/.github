@@ -89,3 +89,7 @@
             - **WAS Server(EC2, EBS):** Private Subnet에서 WEB server에서 필요한 API 제공, 재사용 가능한 EBS 볼륨 사용
             - **DB Server(RDS-PostgreSQL):** Private Subnet에서 서비스 관련 정보 저장
             - **Storage Server(S3):** Private Subnet에서 서비스에 필요한 파일, 영상 등 미디어 자료 저장
+
+
+
+### 🚨 MoaRoom는 숙명여자대학교 IT공학전공 23-1 졸업프로젝트 출품작입니다. 수업 기간(2023.2 ~ 2023.8) 동안 무단 도용, 배포 및 상업적 사용을 금지합니다. 🚨
