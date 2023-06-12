@@ -2,6 +2,10 @@
 
 **프로그래밍 과제 제출 환경 통합 및 검사 자동화 플랫폼: MoaRoom(모아룸)**
 
+# 팀원
+### [금나연](https://github.com/NayeonKeum): Infra & Frontend
+### [김민지](https://github.com/mjms0214): Backend & Frontend
+
 # 로고
 <img src="https://github.com/MoaRoom/.github/assets/68985625/283e32c3-c089-4a15-9d3a-39c7133f99f8" width=30%/>&nbsp;&nbsp;<img src="https://github.com/MoaRoom/.github/assets/68985625/1ddba96d-a9d2-49b6-b066-79ff941855e3" width=30%/>
 
