@@ -43,14 +43,14 @@
 
 ### 서비스 개발
 
-- 프론트엔드
+- [[MoaRoom-Front](https://github.com/MoaRoom/MoaRoom-Front)] 프론트엔드
     - **사용 기술:** React.ts 18.2.0, TypeScript 4.0, Ubuntu 20.04(AWS EC2)
     - **개발 환경:** Visual Studio Code 1.68
     - **구현**
         - 교수: 로그인 → 강의 리스트 확인 → 채점 대시보드, 컨테이너 할당 대시보드
         - 학생: 로그인 → 강의 리스트 확인 → 과제 리스트, 컨테이너 할당 요청 리스트
         - 공통: 마이페이지(수강 중/개설한 강의 목록 확인 가능, 사용자 정보 확인 및 수정)
-- 백엔드
+- [[MoaRoom-Back](https://github.com/MoaRoom/MoaRoom-Back)] 백엔드
     - **사용 기술:** Spring Boot 2.7.10, JAVA 11.0.18, PostgreSQL 15.2(AWS RDS), Ubuntu 20.04(AWS EC2)
     - **개발 환경:** IntelliJ 2022.3
     - **구현:**
@@ -61,17 +61,17 @@
 
 ### 인프라 개발
 
-![졸프_SW아키텍처 drawio](https://github.com/MoaRoom/.github/assets/68985625/f99df8d4-0c1c-46ac-95fd-1358bb400e53)
+![졸프_SW아키텍처 drawio](https://github.com/MoaRoom/.github/assets/68985625/e426451f-339b-45df-b04c-9bd064dcea26)
 
-
-- Infrastructure provisioning pipeline
+- [[Moaroom-Provisioning-Infra](https://github.com/MoaRoom/Moaroom-Provisioning-Infra)]Infrastructure provisioning pipeline
     
     - **사용 기술:** Kubernetes 1.25.8, Kubespray 2.21.0, Ansible 2.12, Docker 20.10.17, containerd 1.6.6, Python 3.8
     - **개발 환경:** MacOS Ventura 13.2.1
     - **구현:**
         - 개발자 로컬 환경에 있는 kubespray, Ansible configuration 파일 빌드
         - AWS EC2에 Kubernetes 환경 생성
-- CI/CD pipeline
+
+- [[MoaRoom-Infra](https://github.com/MoaRoom/MoaRoom-Infra)] CI/CD pipeline
     
     - **사용 기술:** ArgoCD to v2.5.5, helm 3.10.3, Jenkins 2.388, Dockerhub, Github
     - **개발 환경:** MacOS Ventura 13.2.1
