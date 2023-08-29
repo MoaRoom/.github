@@ -61,7 +61,7 @@
 
 ### 인프라 개발
 
-![졸프_SW아키텍처 drawio](https://github.com/MoaRoom/.github/assets/68985625/e426451f-339b-45df-b04c-9bd064dcea26)
+![졸프_SW아키텍처 drawio](https://github.com/MoaRoom/.github/assets/68985625/4f4f5b44-9106-45af-a3d4-548a154a4713)
 
 - [[Moaroom-Provisioning-Infra](https://github.com/MoaRoom/Moaroom-Provisioning-Infra)]Infrastructure provisioning pipeline
     
