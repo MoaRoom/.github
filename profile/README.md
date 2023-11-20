@@ -35,7 +35,6 @@
 ### **주요 기능**
 
 - 채점자(교수/조교)
-    - 대시보드를 통해 제출 인원에 맞는 가상 환경 관리
     - 제출된 과제를 로컬 PC에 다운로드, 실행하지 않고도 열람 가능
     - 자동화된 채점 기능
 - 제출자(학생)
@@ -46,14 +45,14 @@
 ### 서비스 개발
 
 - [[MoaRoom-Front](https://github.com/MoaRoom/MoaRoom-Front)] 프론트엔드
-    - **사용 기술:** React.ts 18.2.0, TypeScript 4.0, Ubuntu 20.04(AWS EC2)
+    - **사용 기술:** React.ts 18.2.0, TypeScript 4.0, Ubuntu 22.04(AWS EC2)
     - **개발 환경:** Visual Studio Code 1.68
     - **구현**
         - 교수: 로그인 → 강의 리스트 확인 → 채점 대시보드, 컨테이너 할당 대시보드
         - 학생: 로그인 → 강의 리스트 확인 → 과제 리스트, 컨테이너 할당 요청 리스트
         - 공통: 마이페이지(수강 중/개설한 강의 목록 확인 가능, 사용자 정보 확인 및 수정)
 - [[MoaRoom-Back](https://github.com/MoaRoom/MoaRoom-Back)] 백엔드
-    - **사용 기술:** Spring Boot 2.7.10, JAVA 11.0.18, PostgreSQL 15.2(AWS RDS), Ubuntu 20.04(AWS EC2)
+    - **사용 기술:** Spring Boot 2.7.10, JAVA 11.0.18, PostgreSQL 15.2, Ubuntu 22.04(AWS EC2)
     - **개발 환경:** IntelliJ 2022.3
     - **구현:**
         - Create: 회원 가입, 강의 생성, 과제 생성
@@ -65,36 +64,37 @@
 
 ![졸프_SW아키텍처 drawio](https://github.com/MoaRoom/Moaroom-Provisioning-Infra/assets/68985625/69a5fac7-455a-4934-b219-127eaab97e88)
 
-- [[Moaroom-Provisioning-Infra](https://github.com/MoaRoom/Moaroom-Provisioning-Infra)]Infrastructure provisioning pipeline
+- [[Moaroom-Provisioning-Infra](https://github.com/MoaRoom/Moaroom-Provisioning-Infra)] Infrastructure provisioning pipeline
     
-    - **사용 기술:** Kubernetes 1.25.8, Kubespray 2.21.0, Ansible 2.12, Docker 20.10.17, containerd 1.6.6, Python 3.8
+    - **사용 기술:** Kubernetes 1.25.8, Kubespray 2.21.0, Ansible 2.12, Docker 20.10.17, Terraform v1.4.2 
     - **개발 환경:** MacOS Ventura 13.2.1
     - **구현:**
-        - 개발자 로컬 환경에 있는 kubespray, Ansible configuration 파일 빌드
-        - AWS EC2에 Kubernetes 환경 생성
+        - Terraform을 이용하여 AWS EKS 구축
+        - Kubespray(Ansible)을 이용하여 AWS EC2에 Kubernetes 클러스터 구축
 
-- [[MoaRoom-Infra](https://github.com/MoaRoom/MoaRoom-Infra)] CI/CD pipeline
+- [[MoaRoom-Infra](https://github.com/MoaRoom/MoaRoom-Infra)] Infra 개발과 관련된 Docker Image 및 CI/CD pipeline
     
-    - **사용 기술:** ArgoCD to v2.5.5, helm 3.10.3, Jenkins 2.388, Dockerhub, Github
+    - **사용 기술:** ArgoCD to v2.5.5, helm 3.10.3, Dockerhub, Github, AWS S3, AWS CodeDeploy
     - **개발 환경:** MacOS Ventura 13.2.1
     - **구현:**
-        - 개발자의 원격 브랜치에서 Docker 빌드에 필요한 파일 또는 Kubernetes configuration 관련 파일을 Github에 푸시
-        - Docker 빌드 관련 파일 수정은 Webhook을 통해 Jenkins 서버로 전달, Kubernetes 관련 파일에 적용 및 Dockerhub에 image 생성 후 푸시
-        - Kubernetes 관련된 파일에서 변경된 내용은 Argo를 이용하여 AWS EC2의 K8s cluster에 전달 후 변경 사항 적용
+        - 개발자의 원격 브랜치에서 Docker 이미지 빌드에 필요한 파일 또는 Kubernetes configuration 관련 파일을 Github에 푸시
+        - Github Actions를 통해 이미지 빌드 및 DockerHub에 푸시
+        - Kustomize + ArgoCD를 통해 AWS EKS 또는 EC2의 K8s cluster에 전달 후 변경 사항 반영
 
 - Cloud architecture
-    - **사용 기술:** EBS, EC2, EKS, ELB,  RDS, Route53, S3
+    - **사용 기술:** AWS EKS, EC2, EFS, DuckDNS
     - **개발 환경:** Amazon Web Services
     - **구현**
         - Kubernetes cluster
-            - **Service:** Public ELB를 통해 들어온 외부 트래픽을 Load Balancer 타입의 Router Service 및 Pod를 통해 Master(교수), Playground(학생, slave) Service에 전달
-            - **Management:** CI/CD pipeline에 필요한 Jenkins 및 ArgoCD의 Service 및 Pod 등을 통해 필요 과정 수행
-            - **Logging:** ELK Stack으로 구축한 Elasticsearch Cluster에서 Service, Management 관련 Pod들을 모니터링, 필요시 Kibana의 Service를 ELB에 연결하여 관리자에게 대시보드 제공
+            - **Service:** Public IP를 통해 들어온 외부 트래픽을 NodePort 타입의 Router Service 및 Pod를 통해 Professor(교수), Student(학생) Service에 전달
+            - **Management:** CI/CD pipeline에 필요한 ArgoCD의 Service 및 Pod 등을 통해 필요 과정 수행
+            - **Logging/Monitoring** ELK Stack, Prometheus Stack을 구축하여 Service, Management 관련 Pod들을 모니터링, 필요시 Kibana 또는 Grafana의 Service를 ELB에 연결하여 관리자에게 웹 UI 대시보드 제공
         - Service
-            - **WEB Server(EC2, EBS):** 프론트엔드 단에서 Public ELB를 통해 들어온 외부 트래픽을 처리, 재사용 가능한 EBS 볼륨 사용
+            - **WEB Server(EC2, EBS):** 프론트엔드 단에서 Public IP를 통해 들어온 외부 트래픽을 처리, 재사용 가능한 EBS 볼륨 사용
             - **WAS Server(EC2, EBS):** Private Subnet에서 WEB server에서 필요한 API 제공, 재사용 가능한 EBS 볼륨 사용
             - **DB Server(RDS-PostgreSQL):** Private Subnet에서 서비스 관련 정보 저장
             - **Storage Server(S3):** Private Subnet에서 서비스에 필요한 파일, 영상 등 미디어 자료 저장
+            - **DDNS**: DuckDNS를 사용하여 무료 도메인 적용
 
 
 
