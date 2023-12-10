@@ -3,6 +3,7 @@
 **프로그래밍 과제 제출 환경 통합 및 검사 자동화 플랫폼: MoaRoom(모아룸)**
 
 **링크**: http://moaroom-front.duckdns.org:3000
+- 비용 제한으로 인해 현재 서버를 닫아놓은 상태입니다. 데모가 필요하시면 `금나연(rmaskdus0208@gmail.com)`으로 문의주시면 감사드리겠습니다.
 
 # 팀원
 ### [금나연](https://github.com/NayeonKeum): Infra & Frontend
